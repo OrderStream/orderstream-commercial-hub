@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OrderStream Commercial Monetization Portal | Web3 & Enterprise</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card-bg: #111827;
+      --card-border: #1f2937;
+      --accent: #3b82f6;
+      --accent-glow: rgba(59, 130, 246, 0.25);
+      --green: #10b981;
+      --yellow: #f59e0b;
+      --purple: #8b5cf6;
+      --text-main: #f9fafb;
+      --text-sub: #9ca3af;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text-main);
+      font-family: 'Inter', -apple-system, sans-serif;
+      line-height: 1.6;
+      padding-bottom: 80px;
+    }
+    header {
+      background: rgba(17, 24, 39, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+      padding: 24px 32px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo-group { display: flex; align-items: center; gap: 12px; }
+    .logo-badge {
+      background: linear-gradient(135deg, var(--accent), var(--purple));
+      color: white;
+      font-weight: 800;
+      font-size: 14px;
+      padding: 6px 12px;
+      border-radius: 8px;
+      letter-spacing: 0.5px;
+    }
+    h1 { font-size: 20px; font-weight: 700; letter-spacing: -0.5px; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 40px 24px; }
+    
+    .hero {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .hero h2 {
+      font-size: 38px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+      background: linear-gradient(to right, #60a5fa, #a78bfa, #34d399);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      font-size: 18px;
+      color: var(--text-sub);
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-bottom: 56px;
+    }
+    .price-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    }
+    .price-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+      box-shadow: 0 12px 30px var(--accent-glow);
+    }
+    .card-popular {
+      border-color: #3b82f6;
+    }
+    .popular-tag {
+      position: absolute;
+      top: -12px;
+      right: 24px;
+      background: #3b82f6;
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 999px;
+      letter-spacing: 0.5px;
+    }
+    .price-title { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+    .price-amount {
+      font-size: 42px;
+      font-weight: 800;
+      color: white;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+    .price-period { font-size: 16px; font-weight: 500; color: var(--text-sub); }
+    .price-desc { font-size: 14px; color: var(--text-sub); margin-bottom: 24px; flex-grow: 1; }
+    .feature-list { list-style: none; margin-bottom: 32px; }
+    .feature-list li {
+      font-size: 14px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn {
+      display: inline-block;
+      text-align: center;
+      background: var(--accent);
+      color: white;
+      font-weight: 600;
+      padding: 12px 24px;
+      border-radius: 10px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      font-size: 15px;
+      transition: background 0.2s;
+    }
+    .btn:hover { background: #2563eb; }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--accent);
+      color: #60a5fa;
+    }
+    .btn-outline:hover { background: rgba(59, 130, 246, 0.1); }
+
+    .settlement-panel {
+      background: linear-gradient(180deg, #131b2e 0%, var(--card-bg) 100%);
+      border: 1px solid #1e3a8a;
+      border-radius: 20px;
+      padding: 36px;
+      margin-bottom: 56px;
+    }
+    .settlement-panel h3 { font-size: 22px; margin-bottom: 12px; }
+    .wallet-box {
+      background: #0d1322;
+      border: 1px solid #1f293d;
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-top: 16px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      word-break: break-all;
+    }
+    .wallet-label { color: #60a5fa; font-weight: 700; margin-bottom: 4px; }
+    .copy-btn {
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #94a3b8;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 12px;
+      white-space: nowrap;
+      margin-left: 12px;
+    }
+    .copy-btn:hover { background: #334155; color: white; }
+
+    .interactive-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 32px;
+    }
+    .panel-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 28px;
+    }
+    .panel-card h4 { font-size: 18px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 13px; font-weight: 600; color: var(--text-sub); margin-bottom: 6px; }
+    .form-control {
+      width: 100%;
+      background: #0d1322;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      color: white;
+      font-family: inherit;
+      font-size: 14px;
+    }
+    .form-control:focus { outline: none; border-color: var(--accent); }
+    .result-box {
+      margin-top: 16px;
+      padding: 14px;
+      border-radius: 8px;
+      background: #090d16;
+      border: 1px solid #1e293b;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      display: none;
+      word-break: break-all;
+      max-height: 240px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo-group">
+      <div class="logo-badge">ORDERSTREAM</div>
+      <h1>Commercial Monetization Hub</h1>
+    </div>
+    <div>
+      <a href="https://github.com/OrderStream" target="_blank" class="btn btn-outline" style="padding: 6px 14px; font-size: 13px;">GitHub @OrderStream</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="hero">
+      <h2>Commercial Security, Audit & CI Infrastructure</h2>
+      <p>Institutional-grade automated audit certificates, 24/7 host storage telemetry alarms, and enterprise CI automation gates for Soroban smart contracts and modern systems.</p>
+    </div>
+
+    <!-- PRICING TIERS -->
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-title">24/7 Telemetry Sentinel</div>
+        <div class="price-amount">$49 <span class="price-period">/ month</span></div>
+        <div class="price-desc">Continuous live ledger event monitoring with proactive Discord/Slack alarms before contract storage TTL archival.</div>
+        <ul class="feature-list">
+          <li>? Instant TTL Archival Warning Alarms</li>
+          <li>? Discord & Slack Rich Embed Webhooks</li>
+          <li>? HMAC-SHA256 Signed Alert Payloads</li>
+          <li>? Up to 5 Mainnet / Testnet Contracts</li>
+        </ul>
+        <button onclick="scrollToSection('telemetry-form')" class="btn btn-outline">Subscribe to Sentinel</button>
+      </div>
+
+      <div class="price-card card-popular">
+        <div class="popular-tag">MOST POPULAR</div>
+        <div class="price-title">Official Audit Certificate</div>
+        <div class="price-amount">$500 <span class="price-period">/ audit</span></div>
+        <div class="price-desc">One-command WASM bytecode inspection, 1,000-step storage TTL fuzzing, and cryptographic SHA-256 certificate issuance.</div>
+        <ul class="feature-list">
+          <li>? Complete Invariant Property Verification</li>
+          <li>? 1,000-Step Storage Archival Fuzzing</li>
+          <li>? Cryptographic SHA-256 Tamper-Evident Seal</li>
+          <li>? Public Verification URL & Embeddable Badge</li>
+        </ul>
+        <button onclick="scrollToSection('audit-form')" class="btn">Issue Audit Certificate</button>
+      </div>
+
+      <div class="price-card">
+        <div class="price-title">Enterprise CI Suite License</div>
+        <div class="price-amount">$199 <span class="price-period">/ month</span></div>
+        <div class="price-desc">Production gate for all 9 universal GitHub Actions including ci-flake-quarantine, schema-lock-guard, and pr-cost-firewall.</div>
+        <ul class="feature-list">
+          <li>? Offline-Verifiable Cryptographic License Key</li>
+          <li>? Unlimited Multi-Repo CI/CD Matrix Runs</li>
+          <li>? Deterministic Clock Sandbox Quarantine</li>
+          <li>? Automated PostgreSQL Lock Collision Gate</li>
+        </ul>
+        <button onclick="scrollToSection('license-form')" class="btn btn-outline">Generate CI Key</button>
+      </div>
+    </div>
+
+    <!-- SETTLEMENT PANEL -->
+    <div class="settlement-panel">
+      <h3>?? Instant Web3 & Merchant Settlement Options</h3>
+      <p style="color: var(--text-sub); font-size: 14px;">Payments settle instantly with 0% platform cuts directly to the OrderStream commercial treasury.</p>
+
+      <div class="wallet-box">
+        <div>
+          <div class="wallet-label">STELLAR PROTOCOL (USDC / XLM)</div>
+          <div>GABFQIK63R2NETJM7T673EAMZN4RJLLGP3OFUEJU5ZVTGWUKULZJNL6 <span style="color: var(--yellow);">(MEMO: 400566831)</span></div>
+        </div>
+        <button class="copy-btn" onclick="copyText('GABFQIK63R2NETJM7T673EAMZN4RJLLGP3OFUEJU5ZVTGWUKULZJNL6')">Copy Address</button>
+      </div>
+
+      <div class="wallet-box">
+        <div>
+          <div class="wallet-label">EVM BASE NETWORK (USDC / ETH)</div>
+          <div>0x5de2b62434754bfd39ef350a3a867ed3eced5074</div>
+        </div>
+        <button class="copy-btn" onclick="copyText('0x5de2b62434754bfd39ef350a3a867ed3eced5074')">Copy Address</button>
+      </div>
+
+      <div style="margin-top: 20px; display: flex; align-items: center; justify-content: space-between;">
+        <span style="color: var(--text-sub); font-size: 14px;">Prefer Corporate Credit Card Billing?</span>
+        <a href="https://polar.sh/OrderStream" target="_blank" class="btn" style="padding: 8px 18px; font-size: 14px; background: #8b5cf6;">Pay with Card on Polar.sh</a>
+      </div>
+    </div>
+
+    <!-- INTERACTIVE SERVICE DISPATCH PANELS -->
+    <div class="interactive-grid">
+      <!-- 1. ISSUE AUDIT CERTIFICATE -->
+      <div class="panel-card" id="audit-form">
+        <h4>??? Issue Security Audit Certificate ($500)</h4>
+        <div class="form-group">
+          <label>Contract Protocol Name</label>
+          <input type="text" id="audit-name" class="form-control" placeholder="e.g. Acme Liquidity Pool">
+        </div>
+        <div class="form-group">
+          <label>Sponsor Stellar Address</label>
+          <input type="text" id="audit-sponsor" class="form-control" placeholder="G...">
+        </div>
+        <div class="form-group">
+          <label>Payment Tx Hash / Polar Order ID</label>
+          <input type="text" id="audit-tx" class="form-control" placeholder="Stellar / Base Tx Hash">
+        </div>
+        <button onclick="requestAuditCertificate()" class="btn" style="width: 100%;">Certify & Emit SHA-256 Certificate</button>
+        <div class="result-box" id="audit-result"></div>
+      </div>
+
+      <!-- 2. REGISTER TELEMETRY SENTINEL -->
+      <div class="panel-card" id="telemetry-form">
+        <h4>?? 24/7 Telemetry Sentinel Registration ($49/mo)</h4>
+        <div class="form-group">
+          <label>Stellar Contract ID</label>
+          <input type="text" id="tel-contract" class="form-control" placeholder="C...">
+        </div>
+        <div class="form-group">
+          <label>Operator Email</label>
+          <input type="email" id="tel-email" class="form-control" placeholder="security@protocol.xyz">
+        </div>
+        <div class="form-group">
+          <label>Discord Webhook URL</label>
+          <input type="url" id="tel-webhook" class="form-control" placeholder="https://discord.com/api/webhooks/...">
+        </div>
+        <button onclick="registerTelemetry()" class="btn" style="width: 100%;">Activate Live Sentinel</button>
+        <div class="result-box" id="tel-result"></div>
+      </div>
+
+      <!-- 3. ISSUE CI LICENSE KEY -->
+      <div class="panel-card" id="license-form">
+        <h4>?? Enterprise CI Suite License ($199/mo)</h4>
+        <div class="form-group">
+          <label>Company / Organization Name</label>
+          <input type="text" id="lic-client" class="form-control" placeholder="e.g. Apex FinTech Labs">
+        </div>
+        <div class="form-group">
+          <label>License Tier</label>
+          <select id="lic-tier" class="form-control">
+            <option value="PRO">PRO ($199/mo - Up to 15 Repos)</option>
+            <option value="ENTERPRISE">ENTERPRISE ($999/mo - Unlimited Repos)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Payment Tx Hash / Polar ID</label>
+          <input type="text" id="lic-tx" class="form-control" placeholder="Stellar / Base Tx Hash">
+        </div>
+        <button onclick="issueLicenseKey()" class="btn" style="width: 100%;">Generate Cryptographic Key</button>
+        <div class="result-box" id="lic-result"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function copyText(text) {
+      navigator.clipboard.writeText(text);
+      alert("Copied address to clipboard: " + text);
+    }
+
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    async function requestAuditCertificate() {
+      const name = document.getElementById('audit-name').value || "Stellar Protocol";
+      const sponsor = document.getElementById('audit-sponsor').value || "G_COMMERCIAL_CLIENT";
+      const tx = document.getElementById('audit-tx').value || "manual_settlement";
+      const resBox = document.getElementById('audit-result');
+      resBox.style.display = 'block';
+      resBox.innerText = "Running 1,000-step invariant fuzzer and emitting SHA-256 seal...";
+
+      try {
+        const res = await fetch('/api/audit/certify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ contract_name: name, sponsor: sponsor, payment_tx: tx })
+        });
+        const data = await res.json();
+        resBox.innerText = JSON.stringify(data, null, 2);
+      } catch (e) {
+        resBox.innerText = "Error: " + e.message;
+      }
+    }
+
+    async function registerTelemetry() {
+      const contract = document.getElementById('tel-contract').value || "CA77DEMOCONTRACTID99887766";
+      const email = document.getElementById('tel-email').value || "ops@protocol.com";
+      const webhook = document.getElementById('tel-webhook').value || "";
+      const resBox = document.getElementById('tel-result');
+      resBox.style.display = 'block';
+      resBox.innerText = "Registering contract on 24/7 Soroban Sentinel node...";
+
+      try {
+        const res = await fetch('/api/telemetry/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ contract_id: contract, owner_email: email, discord_webhook: webhook })
+        });
+        const data = await res.json();
+        resBox.innerText = JSON.stringify(data, null, 2);
+      } catch (e) {
+        resBox.innerText = "Error: " + e.message;
+      }
+    }
+
+    async function issueLicenseKey() {
+      const client = document.getElementById('lic-client').value || "Enterprise Partner";
+      const tier = document.getElementById('lic-tier').value;
+      const tx = document.getElementById('lic-tx').value || "settled_direct_wallet";
+      const resBox = document.getElementById('lic-result');
+      resBox.style.display = 'block';
+      resBox.innerText = "Generating cryptographically signed offline-verifiable key...";
+
+      try {
+        const res = await fetch('/api/license/issue', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ client_name: client, tier: tier, payment_tx: tx })
+        });
+        const data = await res.json();
+        resBox.innerText = JSON.stringify(data, null, 2);
+      } catch (e) {
+        resBox.innerText = "Error: " + e.message;
+      }
+    }
+  </script>
+</body>
+</html>

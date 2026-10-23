@@ -1,0 +1,166 @@
+import base64
+import os
+from typing import Optional
+from fastapi import FastAPI, HTTPException, Body
+from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi.staticfiles import StaticFiles
+
+from .license_gate import LicenseManager, LicenseTier
+from .audit_certifier import AuditCertifier
+from .telemetry_hub import TelemetryHub
+
+app = FastAPI(
+    title="OrderStream Commercial Monetization Hub",
+    description="Official customer payment, audit certification, and subscription engine",
+    version="1.0.0"
+)
+
+license_mgr = LicenseManager()
+audit_certifier = AuditCertifier()
+telemetry_hub = TelemetryHub()
+
+STATIC_DIR = os.path.join(os.path.dirname(__file__), "..", "static")
+if os.path.exists(STATIC_DIR):
+    app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
+
+@app.get("/", response_class=HTMLResponse)
+def index():
+    html_file = os.path.join(STATIC_DIR, "index.html")
+    if os.path.exists(html_file):
+        with open(html_file, "r", encoding="utf-8") as f:
+            return f.read()
+    return "<h1>OrderStream Commercial Monetization Hub</h1>"
+
+@app.get("/api/pricing")
+def get_pricing():
+    return {
+        "settlement_wallets": {
+            "stellar": {
+                "address": "GABFQIK63R2NETJM7T673EAMZN4RJLLGP3OFUEJU5ZVTGWUKULZJNL6",
+                "memo": "400566831",
+                "accepted_assets": ["USDC", "XLM"]
+            },
+            "evm_base": {
+                "address": "0x5de2b62434754bfd39ef350a3a867ed3eced5074",
+                "network": "Base",
+                "accepted_assets": ["USDC", "ETH"]
+            },
+            "credit_card": "https://polar.sh/OrderStream"
+        },
+        "tiers": [
+            {
+                "id": "audit_certificate",
+                "name": "Official Audit Certificate",
+                "price_usd": 500,
+                "type": "per_audit",
+                "description": "One-command WASM bytecode inspection, 1,000-step storage TTL boundary fuzzing, and cryptographic SHA-256 certificate issuance."
+            },
+            {
+                "id": "telemetry_pro",
+                "name": "24/7 Soroban Telemetry Sentinel",
+                "price_usd": 49,
+                "type": "monthly",
+                "description": "Continuous on-chain event stream monitoring with Discord/Slack webhook alarms before storage TTL eviction."
+            },
+            {
+                "id": "ci_team_license",
+                "name": "Enterprise CI Developer License",
+                "price_usd": 199,
+                "type": "monthly",
+                "description": "Commercial gate for ci-flake-quarantine, schema-lock-guard, and pr-cost-firewall across all engineering repositories."
+            }
+        ]
+    }
+
+@app.post("/api/audit/certify")
+def create_audit_certificate(payload: dict = Body(...)):
+    contract_name = payload.get("contract_name", "Untitled Contract")
+    wasm_b64 = payload.get("wasm_b64", "")
+    sponsor = payload.get("sponsor", "G_ANONYMOUS_SPONSOR")
+    payment_tx = payload.get("payment_tx", "simulated_testnet_tx")
+    
+    if wasm_b64:
+        try:
+            wasm_bytes = base64.b64decode(wasm_b64)
+        except Exception:
+            wasm_bytes = wasm_b64.encode("utf-8")
+    else:
+        wasm_bytes = b"\x00asm\x01\x00\x00\x00" # Standard WASM binary header
+        
+    cert = audit_certifier.certify_contract(
+        contract_name=contract_name,
+        wasm_bytes=wasm_bytes,
+        sponsor_address=sponsor,
+        payment_tx=payment_tx
+    )
+    return cert
+
+@app.get("/api/audit/verify/{cert_id}")
+def verify_audit_certificate(cert_id: str):
+    result = audit_certifier.verify_certificate(cert_id)
+    if not result.get("valid"):
+        raise HTTPException(status_code=404, detail=result.get("reason"))
+    return result
+
+@app.post("/api/license/issue")
+def issue_license(payload: dict = Body(...)):
+    client_name = payload.get("client_name")
+    tier_str = payload.get("tier", "PRO").upper()
+    duration_days = int(payload.get("duration_days", 30))
+    payment_tx = payload.get("payment_tx", "direct_crypto_tx")
+    
+    if not client_name:
+        raise HTTPException(status_code=400, detail="client_name is required")
+        
+    tier = LicenseTier.ENTERPRISE if tier_str == "ENTERPRISE" else LicenseTier.PRO
+    key = license_mgr.issue_license(
+        client_name=client_name,
+        tier=tier,
+        duration_days=duration_days,
+        payment_tx=payment_tx
+    )
+    verification = license_mgr.verify_license(key)
+    return {
+        "license_key": key,
+        "metadata": verification
+    }
+
+@app.post("/api/license/verify")
+def verify_license(payload: dict = Body(...)):
+    key = payload.get("license_key")
+    if not key:
+        raise HTTPException(status_code=400, detail="license_key is required")
+    res = license_mgr.verify_license(key)
+    return res
+
+@app.post("/api/telemetry/register")
+def register_telemetry(payload: dict = Body(...)):
+    contract_id = payload.get("contract_id")
+    email = payload.get("owner_email")
+    discord_webhook = payload.get("discord_webhook")
+    
+    if not contract_id or not email:
+        raise HTTPException(status_code=400, detail="contract_id and owner_email are required")
+        
+    sub = telemetry_hub.register_contract(
+        contract_id=contract_id,
+        owner_email=email,
+        discord_webhook=discord_webhook
+    )
+    return sub
+
+@app.post("/api/telemetry/evaluate")
+def evaluate_telemetry(payload: dict = Body(...)):
+    contract_id = payload.get("contract_id")
+    current_ledger = int(payload.get("current_ledger", 100000))
+    live_until_ledger = int(payload.get("live_until_ledger", 103000))
+    
+    if not contract_id:
+        raise HTTPException(status_code=400, detail="contract_id is required")
+        
+    alert = telemetry_hub.evaluate_contract_ttl(contract_id, current_ledger, live_until_ledger)
+    discord_payload = telemetry_hub.format_discord_alert(alert) if alert["action_required"] else None
+    return {
+        "alert": alert,
+        "discord_embed": discord_payload
+    }

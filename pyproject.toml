@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "orderstream-commercial-hub"
+version = "1.0.0"
+description = "OrderStream Commercial Monetization Engine: Automated Cryptographic Audit Certificates, 24/7 Soroban Telemetry Alarms, and Enterprise CI License Authority"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [{ name = "OrderStream", email = "hashdecode77@gmail.com" }]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Topic :: Security :: Cryptography",
+    "Topic :: Software Development :: Quality Assurance",
+]
+dependencies = [
+    "fastapi>=0.100.0",
+    "uvicorn>=0.22.0",
+]
+
+[project.scripts]
+orderstream-hub = "orderstream_commercial_hub.server:app"
