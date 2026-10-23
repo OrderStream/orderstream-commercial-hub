@@ -5,7 +5,7 @@ from .license_gate import LicenseManager, LicenseTier
 from .telemetry_hub import TelemetryHub
 from .audit_certifier import AuditCertifier
 
-def main():
+def main(argv=None):
     parser = argparse.ArgumentParser(
         prog="orderstream-hub",
         description="OrderStream Commercial Hub CLI: Licensing, Telemetry Sentinel & Enterprise Gateway"
@@ -35,7 +35,7 @@ def main():
     # stats command
     subparsers.add_parser("stats", help="Show live telemetry and sentinel metrics")
 
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
 
     if args.command == "serve":
         try:

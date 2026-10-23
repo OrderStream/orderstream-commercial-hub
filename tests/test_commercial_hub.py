@@ -187,5 +187,15 @@ class TestCommercialHub(unittest.TestCase):
         self.assertEqual(ingest_res.status_code, 200)
         self.assertEqual(ingest_res.json()["status"], "INGESTED")
 
+    def test_cli_runner(self):
+        from orderstream_commercial_hub.cli import main
+        with self.assertRaises(SystemExit) as cm:
+            main(["--help"])
+        self.assertEqual(cm.exception.code, 0)
+
+        # test pricing and stats commands run without error
+        main(["pricing"])
+        main(["stats"])
+
 if __name__ == "__main__":
     unittest.main()
