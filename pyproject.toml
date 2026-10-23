@@ -21,4 +21,4 @@ dependencies = [
 ]
 
 [project.scripts]
-orderstream-hub = "orderstream_commercial_hub.server:app"
+orderstream-hub = "orderstream_commercial_hub.cli:main"

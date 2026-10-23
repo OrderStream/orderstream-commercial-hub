@@ -248,43 +248,58 @@
     <!-- PRICING TIERS -->
     <div class="pricing-grid">
       <div class="price-card">
-        <div class="price-title">24/7 Telemetry Sentinel</div>
-        <div class="price-amount">$49 <span class="price-period">/ month</span></div>
-        <div class="price-desc">Continuous live ledger event monitoring with proactive Discord/Slack alarms before contract storage TTL archival.</div>
+        <div class="price-title">Starter Suite</div>
+        <div class="price-amount">$499 <span class="price-period">/ month</span></div>
+        <div class="price-desc">Essential PR and merge protection for growing development teams up to 10 repositories.</div>
         <ul class="feature-list">
-          <li>? Instant TTL Archival Warning Alarms</li>
-          <li>? Discord & Slack Rich Embed Webhooks</li>
-          <li>? HMAC-SHA256 Signed Alert Payloads</li>
-          <li>? Up to 5 Mainnet / Testnet Contracts</li>
+          <li>✓ semantic-merge-guard & pr-cost-firewall</li>
+          <li>✓ auto-heal-deps & env-sync-gate</li>
+          <li>✓ Up to 10 Active Repositories</li>
+          <li>✓ 500 CI Runs / Month Included</li>
         </ul>
-        <button onclick="scrollToSection('telemetry-form')" class="btn btn-outline">Subscribe to Sentinel</button>
+        <button onclick="scrollToSection('license-form')" class="btn btn-outline">Choose Starter</button>
       </div>
 
       <div class="price-card card-popular">
-        <div class="popular-tag">MOST POPULAR</div>
-        <div class="price-title">Official Audit Certificate</div>
-        <div class="price-amount">$500 <span class="price-period">/ audit</span></div>
-        <div class="price-desc">One-command WASM bytecode inspection, 1,000-step storage TTL fuzzing, and cryptographic SHA-256 certificate issuance.</div>
+        <div class="popular-tag">RECOMMENDED</div>
+        <div class="price-title">Team Platform</div>
+        <div class="price-amount">$1,499 <span class="price-period">/ month</span></div>
+        <div class="price-desc">Complete developer productivity & security suite across up to 50 engineering repositories.</div>
         <ul class="feature-list">
-          <li>? Complete Invariant Property Verification</li>
-          <li>? 1,000-Step Storage Archival Fuzzing</li>
-          <li>? Cryptographic SHA-256 Tamper-Evident Seal</li>
-          <li>? Public Verification URL & Embeddable Badge</li>
+          <li>✓ All 10 OrderStream Production Tools</li>
+          <li>✓ ci-flake-quarantine Deterministic Replay</li>
+          <li>✓ zero-downtime Shadow DB Migration Guard</li>
+          <li>✓ 24/7 Soroban Telemetry Sentinel Included</li>
+          <li>✓ Up to 50 Repositories & Unlimited Runs</li>
         </ul>
-        <button onclick="scrollToSection('audit-form')" class="btn">Issue Audit Certificate</button>
+        <button onclick="scrollToSection('license-form')" class="btn">Choose Team</button>
       </div>
 
       <div class="price-card">
-        <div class="price-title">Enterprise CI Suite License</div>
-        <div class="price-amount">$199 <span class="price-period">/ month</span></div>
-        <div class="price-desc">Production gate for all 9 universal GitHub Actions including ci-flake-quarantine, schema-lock-guard, and pr-cost-firewall.</div>
+        <div class="price-title">Enterprise Platform</div>
+        <div class="price-amount">$4,999 <span class="price-period">/ month</span></div>
+        <div class="price-desc">Full enterprise infrastructure with speculative merge engines, WASM sandbox gates, and dedicated SLA.</div>
         <ul class="feature-list">
-          <li>? Offline-Verifiable Cryptographic License Key</li>
-          <li>? Unlimited Multi-Repo CI/CD Matrix Runs</li>
-          <li>? Deterministic Clock Sandbox Quarantine</li>
-          <li>? Automated PostgreSQL Lock Collision Gate</li>
+          <li>✓ Unlimited Repositories & Monorepos</li>
+          <li>✓ Multi-Repo Speculative Merge Engine</li>
+          <li>✓ WASM Syscall Sandbox & Gas Profiler</li>
+          <li>✓ Dedicated 24/7 Cloud Keeper & 99.99% SLA</li>
+          <li>✓ SOC2 & ISO-27001 Compliance Reports</li>
         </ul>
-        <button onclick="scrollToSection('license-form')" class="btn btn-outline">Generate CI Key</button>
+        <button onclick="scrollToSection('license-form')" class="btn btn-outline">Choose Enterprise</button>
+      </div>
+
+      <div class="price-card">
+        <div class="price-title">M&A IP & Security Audit</div>
+        <div class="price-amount">$15,000 <span class="price-period">one-time</span></div>
+        <div class="price-desc">Deep AST fuzzy fingerprint audit, snippet license contamination analysis, and forensic IP Cleanliness Certificate.</div>
+        <ul class="feature-list">
+          <li>✓ Full Codebase Copyleft AST Fingerprinting</li>
+          <li>✓ snippet-license-sheriff Verification</li>
+          <li>✓ Formal Invariant & Cryptographic Seal</li>
+          <li>✓ Executive M&A / IPO Diligence Dossier</li>
+        </ul>
+        <button onclick="scrollToSection('audit-form')" class="btn btn-outline">Order M&A Audit</button>
       </div>
     </div>
 
@@ -365,8 +380,10 @@
         <div class="form-group">
           <label>License Tier</label>
           <select id="lic-tier" class="form-control">
-            <option value="PRO">PRO ($199/mo - Up to 15 Repos)</option>
-            <option value="ENTERPRISE">ENTERPRISE ($999/mo - Unlimited Repos)</option>
+            <option value="STARTER">STARTER ($499/mo - Up to 10 Repos)</option>
+            <option value="TEAM" selected>TEAM ($1,499/mo - Up to 50 Repos)</option>
+            <option value="ENTERPRISE">ENTERPRISE ($4,999/mo - Unlimited Repos)</option>
+            <option value="MA_AUDIT">M&A IP AUDIT ($15,000 one-time)</option>
           </select>
         </div>
         <div class="form-group">

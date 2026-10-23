@@ -10,12 +10,23 @@ from typing import Dict, Any, Optional
 DEFAULT_SECRET = os.getenv("ORDERSTREAM_SECRET_KEY", "os_master_secret_2026_stellar_prod_secure")
 
 class LicenseTier(str, Enum):
-    PRO = "PRO"
+    STARTER = "STARTER"
+    TEAM = "TEAM"
     ENTERPRISE = "ENTERPRISE"
+    MA_AUDIT = "MA_AUDIT"
+    PRO = "PRO"
 
 class LicenseManager:
-    """Issues and cryptographically validates OrderStream Pro & Enterprise license keys."""
+    """Issues and cryptographically validates OrderStream Pro, Team & Enterprise license keys."""
     
+    TIER_DEFAULT_QUOTAS = {
+        LicenseTier.STARTER: 10,
+        LicenseTier.TEAM: 50,
+        LicenseTier.ENTERPRISE: -1,
+        LicenseTier.MA_AUDIT: -1,
+        LicenseTier.PRO: 15,
+    }
+
     def __init__(self, secret_key: str = DEFAULT_SECRET):
         self.secret_key = secret_key.encode("utf-8")
         
@@ -24,19 +35,22 @@ class LicenseManager:
         client_name: str,
         tier: LicenseTier,
         duration_days: int = 30,
-        max_repos: int = 15,
+        max_repos: Optional[int] = None,
         payment_tx: Optional[str] = None
     ) -> str:
         """Issues an offline-verifiable cryptographically signed license key."""
         now = int(time.time())
         expires_at = now + (duration_days * 86400)
         
+        if max_repos is None:
+            max_repos = self.TIER_DEFAULT_QUOTAS.get(tier, 15)
+        
         payload = {
             "client": client_name,
             "tier": tier.value,
             "issued_at": now,
             "expires_at": expires_at,
-            "max_repos": -1 if tier == LicenseTier.ENTERPRISE else max_repos,
+            "max_repos": max_repos,
             "tx": payment_tx or "direct_wallet"
         }
         

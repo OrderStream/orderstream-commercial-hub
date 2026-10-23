@@ -49,25 +49,52 @@ def get_pricing():
         },
         "tiers": [
             {
+                "id": "starter",
+                "name": "Starter Suite",
+                "price_usd": 499,
+                "type": "monthly",
+                "max_repos": 10,
+                "description": "Essential automated PR guards: semantic-merge-guard, pr-cost-firewall, auto-heal-deps, and env-sync-gate with up to 500 CI runs/mo."
+            },
+            {
+                "id": "team",
+                "name": "Team Platform",
+                "price_usd": 1499,
+                "type": "monthly",
+                "max_repos": 50,
+                "description": "Full OrderStream suite including ci-flake-quarantine deterministic replay, zero-downtime shadow DB migration guard, ai-hallucination-wall, and 24/7 telemetry alarms."
+            },
+            {
+                "id": "enterprise_platform",
+                "name": "Enterprise Platform",
+                "price_usd": 4999,
+                "type": "monthly",
+                "max_repos": -1,
+                "description": "Unlimited repositories, multi-repo speculative merge engine, zero-downtime migration orchestrator, WASM sandbox gate, dedicated 24/7 cloud keeper, custom SLA, and SOC2 compliance exports."
+            },
+            {
+                "id": "ma_ip_audit",
+                "name": "M&A IP & Security Audit",
+                "price_usd": 15000,
+                "type": "one_time",
+                "max_repos": -1,
+                "description": "Deep AST fuzzy fingerprint copyleft audit, snippet license sheriff certification, formal invariant verification, and executive forensic IP Cleanliness Certificate."
+            },
+            {
                 "id": "audit_certificate",
-                "name": "Official Audit Certificate",
-                "price_usd": 500,
+                "name": "Official Soroban Security Audit Certificate",
+                "price_usd": 2500,
                 "type": "per_audit",
+                "max_repos": 1,
                 "description": "One-command WASM bytecode inspection, 1,000-step storage TTL boundary fuzzing, and cryptographic SHA-256 certificate issuance."
             },
             {
                 "id": "telemetry_pro",
                 "name": "24/7 Soroban Telemetry Sentinel",
-                "price_usd": 49,
-                "type": "monthly",
-                "description": "Continuous on-chain event stream monitoring with Discord/Slack webhook alarms before storage TTL eviction."
-            },
-            {
-                "id": "ci_team_license",
-                "name": "Enterprise CI Developer License",
                 "price_usd": 199,
                 "type": "monthly",
-                "description": "Commercial gate for ci-flake-quarantine, schema-lock-guard, and pr-cost-firewall across all engineering repositories."
+                "max_repos": 5,
+                "description": "Continuous on-chain event stream monitoring with Discord/Slack webhook alarms before storage TTL eviction."
             }
         ]
     }
@@ -105,18 +132,29 @@ def verify_audit_certificate(cert_id: str):
 @app.post("/api/license/issue")
 def issue_license(payload: dict = Body(...)):
     client_name = payload.get("client_name")
-    tier_str = payload.get("tier", "PRO").upper()
+    tier_str = payload.get("tier", "STARTER").upper()
     duration_days = int(payload.get("duration_days", 30))
     payment_tx = payload.get("payment_tx", "direct_crypto_tx")
+    max_repos = payload.get("max_repos")
+    if max_repos is not None:
+        max_repos = int(max_repos)
     
     if not client_name:
         raise HTTPException(status_code=400, detail="client_name is required")
         
-    tier = LicenseTier.ENTERPRISE if tier_str == "ENTERPRISE" else LicenseTier.PRO
+    tier_mapping = {
+        "STARTER": LicenseTier.STARTER,
+        "TEAM": LicenseTier.TEAM,
+        "ENTERPRISE": LicenseTier.ENTERPRISE,
+        "MA_AUDIT": LicenseTier.MA_AUDIT,
+        "PRO": LicenseTier.PRO
+    }
+    tier = tier_mapping.get(tier_str, LicenseTier.STARTER)
     key = license_mgr.issue_license(
         client_name=client_name,
         tier=tier,
         duration_days=duration_days,
+        max_repos=max_repos,
         payment_tx=payment_tx
     )
     verification = license_mgr.verify_license(key)
@@ -164,3 +202,20 @@ def evaluate_telemetry(payload: dict = Body(...)):
         "alert": alert,
         "discord_embed": discord_payload
     }
+
+@app.post("/api/telemetry/ingest")
+def ingest_telemetry(payload: dict = Body(...)):
+    """Ingests real-time CI metrics, flaky test events, merge conflicts, or TTL metrics."""
+    if not payload:
+        raise HTTPException(status_code=400, detail="Empty telemetry payload")
+    record = telemetry_hub.ingest_event(payload)
+    return record
+
+@app.get("/api/telemetry/events")
+def get_telemetry_events(limit: int = 50):
+    return {"events": telemetry_hub.get_events(limit=limit)}
+
+@app.get("/api/telemetry/stats")
+def get_telemetry_stats():
+    return telemetry_hub.get_stats()
+

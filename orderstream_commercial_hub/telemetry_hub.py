@@ -117,3 +117,35 @@ class TelemetryHub:
                 "footer": {"text": "OrderStream Telemetry Hub - Real-Time Protection"}
             }]
         }
+
+    def ingest_event(self, event_data: Dict[str, Any]) -> Dict[str, Any]:
+        """Ingests live telemetry metrics and security events from CI runs or keeper daemons."""
+        now = int(time.time())
+        event_id = hashlib.sha256(f"{now}:{json.dumps(event_data, sort_keys=True)}".encode("utf-8")).hexdigest()[:12]
+        
+        record = {
+            "event_id": f"evt_{event_id}",
+            "received_at": now,
+            "source": event_data.get("source", "orderstream-client"),
+            "event_type": event_data.get("event_type", "general_telemetry"),
+            "repository": event_data.get("repository", "unknown-repo"),
+            "severity": event_data.get("severity", "INFO"),
+            "details": event_data.get("details", {}),
+            "status": "INGESTED"
+        }
+        
+        self.alert_history.append(record)
+        return record
+
+    def get_events(self, limit: int = 50) -> List[Dict[str, Any]]:
+        """Returns recent ingested events and alerts."""
+        return self.alert_history[-limit:]
+
+    def get_stats(self) -> Dict[str, Any]:
+        """Returns aggregate telemetry metrics."""
+        return {
+            "total_subscriptions": len(self.subscriptions),
+            "total_events_ingested": len(self.alert_history),
+            "active_sentinels": sum(1 for s in self.subscriptions.values() if s.get("active", False))
+        }
+

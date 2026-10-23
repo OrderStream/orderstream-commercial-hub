@@ -1,4 +1,4 @@
-# OrderStream Commercial Monetization Hub ?????
+# OrderStream Commercial Monetization Hub üåêüèõÔ∏è
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![CI](https://img.shields.io/badge/CI-Passing-brightgreen.svg)]()
@@ -6,70 +6,94 @@
 [![Stellar XLM/USDC](https://img.shields.io/badge/Stellar-USDC%2FXLM-black.svg)](#instant-web3-settlement-wallets)
 [![Base USDC](https://img.shields.io/badge/Base-USDC-0052FF.svg)](#instant-web3-settlement-wallets)
 
-**The Institutional Payment, Audit Certification, and 24/7 Subscription Engine for OrderStream Technologies.**
+**The Institutional Payment, Licensing Authority, and 24/7 Telemetry Ingest Engine for OrderStream Technologies.**
 
 ---
 
-## ?? Executive Monetization Architecture
+## üèõÔ∏è Executive Monetization Architecture
 
-The Commercial Hub powers automated revenue collection across three high-margin developer services:
+The Commercial Hub powers automated revenue collection, cryptographic licensing, and telemetry ingestion across all OrderStream enterprise tools:
 
 ```
-+-----------------------------------------------------------------------------+
-¶                       ORDERSTREAM REVENUE STREAMS                           ¶
-+-----------------------------------------------------------------------------¶
-¶ ??? Audit Certification ¶ ?? 24/7 Telemetry Sentinel¶ ?? Enterprise CI Gate ¶
-¶ $500 ñ $2,000 / audit   ¶ $49 ñ $199 / month        ¶ $199 ñ $999 / month   ¶
-¶ SHA-256 Verified Seal   ¶ Real-time TTL Alarms      ¶ Offline Ed25519 Keys  ¶
-+-----------------------------------------------------------------------------+
++---------------------------------------------------------------------------------------------------------+
+|                                    ORDERSTREAM COMMERCIAL TIERS                                         |
++---------------------------------------------------------------------------------------------------------+
+|  Starter Suite       |  Team Platform       |  Enterprise Platform     |  M&A IP & Security Audit       |
+|  $499 / month        |  $1,499 / month      |  $4,999 / month          |  $15,000 one-time              |
+|  Up to 10 Repos      |  Up to 50 Repos      |  Unlimited Repositories  |  Full Diligence Dossier        |
+|  Core PR & CI Gates  |  Deterministic Flake |  Multi-Repo Merge Engine |  Copyleft AST Fingerprinting   |
+|  500 Runs / mo       |  Shadow DB Migrations|  24/7 Dedicated Keeper   |  SHA-256 Clean Certificate     |
++---------------------------------------------------------------------------------------------------------+
 ```
 
 ---
 
-## ?? Paid Tiers & Pricing
+## üí≥ Enterprise Pricing Matrix
 
-### 1. Official Soroban Security Audit Certificate ($500 ñ $2,000 / audit)
-- **Problem Solved**: Manual smart contract audits take 6ñ10 weeks and cost $30,000ñ$100,000.
-- **Deliverable**: Automated 1,000-step storage TTL & invariant fuzzing report, tamper-evident SHA-256 digital certificate, and official embeddable markdown badge.
-- **Endpoint**: `POST /api/audit/certify`
-- **Verification Portal**: `GET /api/audit/verify/{cert_id}`
-
-### 2. 24/7 Soroban Telemetry Sentinel ($49 ñ $199 / month)
-- **Problem Solved**: Contracts silently expire and enter storage archival on Stellar mainnet when founders forget to extend TTL.
-- **Deliverable**: 24/7 daemon listener monitoring live ledger state, dispatching immediate rich Discord/Slack embed webhooks before TTL archival.
-- **Endpoint**: `POST /api/telemetry/register`
-
-### 3. Enterprise CI Suite License ($199 ñ $999 / month)
-- **Problem Solved**: Flaky test rebuilds ($500+/mo CI waste), Docker bloat, and database lockouts in high-velocity teams.
-- **Deliverable**: Offline-verifiable cryptographic license key unlocking `ci-flake-quarantine`, `schema-lock-guard`, and `pr-cost-firewall` across unlimited repositories.
-- **Endpoint**: `POST /api/license/issue`
-- **Verification**: `POST /api/license/verify`
+| Tier | Price | Quota | Included Features |
+| :--- | :--- | :--- | :--- |
+| **Starter Suite** | **$499 / mo** | 10 Repositories | `semantic-merge-guard`, `pr-cost-firewall`, `auto-heal-deps`, `env-sync-gate`, 500 CI runs/mo |
+| **Team Platform** | **$1,499 / mo** | 50 Repositories | All 10 OrderStream tools, `ci-flake-quarantine` deterministic replay, `zero-downtime-migration-guard` shadow DB simulation, `ai-hallucination-wall`, 24/7 Telemetry Sentinel |
+| **Enterprise Platform** | **$4,999 / mo** | Unlimited | Multi-repo speculative merge engine, WASM syscall sandbox, automated rollbacks, 24/7 cloud keeper, 99.99% SLA, SOC2 / ISO-27001 audit exports |
+| **M&A IP & Security Audit** | **$15,000 one-time** | Whole Organization | Comprehensive copyleft AST fuzzy fingerprint audit, `snippet-license-sheriff` verification, formal contract verification, executive IP Cleanliness Certificate |
+| **Official Soroban Audit Certificate** | **$2,500 / audit** | Single Contract | 1,000-step WASM storage TTL boundary fuzzing, invariant check, cryptographic SHA-256 certificate |
+| **24/7 Soroban Telemetry Sentinel** | **$199 / mo** | 5 Contracts | Real-time live ledger event monitoring, Slack/Discord rich embed alerts before TTL eviction |
 
 ---
 
-## ?? Instant Web3 Settlement Wallets
+## ‚ö° Instant Web3 Settlement Wallets
 
-OrderStream accepts direct cryptocurrency payments with **0% intermediary fees** and instant 3-second settlement:
+OrderStream accepts direct cryptocurrency payments with **0% intermediary fees** and instant settlement:
 
-* **Stellar (USDC / XLM)**:  
+* **Stellar Protocol (USDC / XLM)**:  
   `GABFQIK63R2NETJM7T673EAMZN4RJLLGP3OFUEJU5ZVTGWUKULZJNL6`  
   *(Required Memo: `400566831`)*
 
 * **EVM Base Network (USDC / ETH)**:  
   `0x5de2b62434754bfd39ef350a3a867ed3eced5074`
 
-* **Corporate Credit Card & Recurring Subscriptions**:  
-  Connect directly via [Polar.sh/OrderStream](https://polar.sh/OrderStream).
+* **Corporate Credit Card & Invoicing**:  
+  Subscribe directly via [Polar.sh/OrderStream](https://polar.sh/OrderStream).
 
 ---
 
-## ?? Quickstart & Self-Serve Dashboard
+## üöÄ CLI Runner & API Gateway
 
-Run the self-serve checkout portal locally or deploy to any server:
+Install locally or in CI environments:
 
 ```bash
-# Run server with Uvicorn
-uvicorn orderstream_commercial_hub.server:app --host 0.0.0.0 --port 8000
+pip install -e .
 ```
 
-Open `http://localhost:8000` to access the interactive customer payment and certificate portal.
+### CLI Commands
+
+```bash
+# Start the Commercial Hub API and self-serve checkout dashboard
+orderstream-hub serve --host 0.0.0.0 --port 8000
+
+# Issue an offline-verifiable cryptographic license key
+orderstream-hub issue --client "Acme Corp" --tier TEAM --days 30
+
+# Verify a license key signature and expiry
+orderstream-hub verify --key "OS-TEAM-ey...-a1b2c3d4"
+
+# Print the enterprise pricing matrix
+orderstream-hub pricing
+
+# View aggregate telemetry stats
+orderstream-hub stats
+```
+
+---
+
+## üõ°Ô∏è GitHub Action Integration
+
+Add the OrderStream license validation and telemetry gate to any workflow:
+
+```yaml
+- name: OrderStream Enterprise License Gate
+  uses: OrderStream/orderstream-commercial-hub@master
+  with:
+    license_key: ${{ secrets.ORDERSTREAM_LICENSE_KEY }}
+    min_tier: "STARTER"
+```
