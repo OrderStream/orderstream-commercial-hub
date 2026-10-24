@@ -70,7 +70,7 @@ def get_pricing():
                 "price_usd": 4999,
                 "type": "monthly",
                 "max_repos": -1,
-                "description": "Unlimited repositories, full 24-solver suite across 6 Pillars (MVCC B-Tree virtual index, Roaring commit graphs, FastCDC Merkle streaming, SAT lockfile merge driver, CRIU runner preemption, SLSA L4 provenance, and CRDT distributed Git engine), dedicated 24/7 cloud keeper, custom SLA, and SOC2 compliance exports."
+                "description": "Unlimited repositories, full 102-solver suite across 10 Pillars (MVCC B-Tree virtual index, Roaring commit graphs, FastCDC Merkle streaming, SAT lockfile merge driver, CRIU runner preemption, SLSA L4 provenance, CRDT distributed Git engine, Prompt Injection AST Sanitizer, Phantom Package Firewall, On-Chain Storage TTL Sentinel, and Tarjan Poly-Sync Deadlock Tracer), dedicated 24/7 cloud keeper, custom SLA, and SOC2 compliance exports."
             },
             {
                 "id": "ma_ip_audit",
@@ -98,12 +98,16 @@ def get_pricing():
             }
         ],
         "pillars": {
-            "pillar1_vcs_storage": "MVCC B-Tree Virtual Index, Bitmap-Sharded Commit Graphs, FastCDC Merkle Chunking, Unicode NFKC Gate",
-            "pillar2_repo_topology": "Multi-Repo Tx Protocol, SAT-Graph Merge Driver, Behavioral Contract Hypergraph, Cryptographic Merkle Redaction",
-            "pillar3_runner_isolation": "Action Context Taint Engine, Zero-Trust Cache Attestation, Single-Address Wasm Server, Preemptive CRIU Hypervisor",
-            "pillar4_supply_chain": "SLSA Level 4 Attestation, RFC 3161 Merkle Timestamp, In-Tree AST Micro-Patcher, SMT Reachability Solver",
-            "pillar5_gitops_scale": "Cloud Event Bus Reverse-Compiler, API Multiplexer & Traffic Shaper, CRDT Distributed Git Engine, Semantic AST Blame",
-            "pillar6_socio_technical": "Dynamic Context Policy Engine, Differential Fuzzing Auto-Merge, Dynamic State Diff Projection, Tree-Sitter SCIP Indexer"
+            "pillar1_vcs_storage": "MVCC B-Tree Virtual Index, Bitmap-Sharded Commit Graphs, FastCDC Merkle Chunking, Unicode NFKC Gate, Loose Object Compressor, Delta Chain Governor, Reflog Compactor, Sharded Tree Cache, Symlink Sanitizer, Alternates Pool",
+            "pillar2_repo_topology": "Multi-Repo Tx Protocol, SAT-Graph Merge Driver, Behavioral Contract Hypergraph, Cryptographic Merkle Redaction, Polyrepo Graph Sorter, Sparse Checkout Synthesizer, Monorepo Boundary Enforcer, Virtual Workspace Linker, Atomic Tag Orchestrator, Workspace Deadlock Resolver",
+            "pillar3_runner_isolation": "Action Context Taint Engine, Zero-Trust Cache Attestation, Single-Address Wasm Server, Preemptive CRIU Hypervisor, cgroup v2 Reaper, Action Secret Leak Firewall, Step Timeout Predictor, Matrix Execution Pruner, Network Egress Jail, Concurrency Slot Scheduler",
+            "pillar4_supply_chain": "SLSA Level 4 Attestation, RFC 3161 Merkle Timestamp, In-Tree AST Micro-Patcher, SMT Reachability Solver, SBOM Delta Differ, Typosquatting Detector, Registry Mirror Validator, Proc-Macro Auditor, License Compliance Matrix, Abandonment Forecaster",
+            "pillar5_gitops_scale": "Cloud Event Bus Reverse-Compiler, API Multiplexer & Traffic Shaper, CRDT Distributed Git Engine, Semantic AST Blame, Terraform State Conflict Guard, K8s Manifest Semantic Diff, Cloud Cost Egress Optimizer, Secret Rotation Orchestrator, Immutable Infrastructure Certifier, Policy As Code Evaluator",
+            "pillar6_socio_technical": "Dynamic Context Policy Engine, Differential Fuzzing Auto-Merge, Dynamic State Diff Projection, Tree-Sitter SCIP Indexer, Code Churn Risk Assessor, Reviewer Load Balancer, Semantic PR Collapser, Dead Code Exterminator, Test Coverage Gap Solver, Review Deadlock Breaker",
+            "pillar7_ai_agent_defenses": "AST Prompt Injection Sanitizer, Phantom Package Slopsquatting Firewall, Agent Loop Cost Circuit Breaker, Synthetic Code Entropy Watermarker, RAG Embedding Staleness Cleaner, Agent Permission Sandbox, Context Window Optimizer, Hallucinated API Firewall, Agentic Git Rebase Governor, Adversarial Benchmark Auditor",
+            "pillar8_smart_contracts_wasm": "Storage TTL Decay Sentinel, WASM Linear Memory & Gas Profiler, Reentrancy Guard Flow Analyzer, Fixed-Point Arithmetic Overflow Gate, Multi-Oracle Freshness Verifier, WASI Syscall Capability Validator, Tail Call Trampoline Synthesizer, Contract Upgrade Storage Checker, Multisig Timelock Coordinator, Wasm SIMD128 Vectorizer",
+            "pillar9_distributed_consensus": "Poly-Sync Deadlock Tracer (Tarjan SCC), Protobuf Wire-Format Oracle, Schema Lock Preflight Simulator, Distributed Trace Context Healer, Circular RPC Detector, API Contract Drift Sentry, Distributed Idempotency Validator, Event Loop Lag Blame Hunter, Actor Backpressure Autopilot, WAL Replication Lag Forecaster",
+            "pillar10_dev_ergonomics_governance": "High-Speed SIMD Log PII Filter, Process Credential Exfiltration Barrier, Multi-Sink GDPR Erasure Authority, Zero-Disruption Git Secret Scrubber, HyperLogLog Cardinality Governor, Workspace Context Snapshot Restorer, Semantic Code Search Graph, Flaky Test Bisector, Cross-AZ Egress Traffic Cop, Serverless Cold Start Prewarmer, Snippet Copyleft License Sheriff, Zero-Downtime Migration Sandbox"
         }
     }
 

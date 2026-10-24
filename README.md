@@ -21,7 +21,7 @@ The Commercial Hub powers automated revenue collection, cryptographic licensing,
 |  Starter Suite       |  Team Platform       |  Enterprise Mesh Tier    |  M&A IP & Security Audit       |
 |  $499 / month        |  $1,499 / month      |  $4,999 / month          |  $15,000 one-time              |
 |  Up to 10 Repos      |  Up to 50 Repos      |  Unlimited Repositories  |  Full Diligence Dossier        |
-|  Core PR & CI Gates  |  Deterministic Flake |  24 Solvers / 6 Pillars  |  Copyleft AST Fingerprinting   |
+|  Core PR & CI Gates  |  Deterministic Flake |  100+ Solvers/10 Pillars |  Copyleft AST Fingerprinting   |
 |  500 Runs / mo       |  Shadow DB Migrations|  Dedicated Cloud Keeper  |  SHA-256 Clean Certificate     |
 +---------------------------------------------------------------------------------------------------------+
 ```
@@ -34,7 +34,7 @@ The Commercial Hub powers automated revenue collection, cryptographic licensing,
 | :--- | :--- | :--- | :--- |
 | **Starter Suite** | **$499 / mo** | 10 Repositories | `semantic-merge-guard`, `pr-cost-firewall`, `auto-heal-deps`, `env-sync-gate`, 500 CI runs/mo |
 | **Team Platform** | **$1,499 / mo** | 50 Repositories | All 10 OrderStream core tools, `ci-flake-quarantine` deterministic replay, `zero-downtime-migration-guard` shadow DB simulation, `ai-hallucination-wall`, 24/7 Telemetry Sentinel |
-| **Enterprise Engineering Mesh** | **$4,999 / mo** | Unlimited | Complete 24-solver suite across 6 Pillars (MVCC B-Tree Virtual Index, Bitmap PR Commit Graph, FastCDC Merkle streaming, SAT Lockfile Merge Solver, CRIU Preemption, SLSA L4 Provenance, CRDT Distributed Git Engine, Tree-Sitter SCIP Indexer), dedicated 24/7 cloud keeper, 99.99% SLA, SOC2 / ISO-27001 audit exports |
+| **Enterprise Engineering Mesh** | **$4,999 / mo** | Unlimited | Complete 100+ solver suite across 10 Pillars (MVCC B-Tree Virtual Index, Bitmap PR Commit Graph, FastCDC Merkle streaming, SAT Lockfile Merge Solver, CRIU Preemption, SLSA L4 Provenance, CRDT Distributed Git Engine, Tree-Sitter SCIP Indexer, Prompt Injection AST Sanitizer, Phantom Package Firewall, Storage TTL Decay Sentinel, Poly-Sync Deadlock Tracer), dedicated 24/7 cloud keeper, 99.99% SLA, SOC2 / ISO-27001 audit exports |
 | **M&A IP & Security Audit** | **$15,000 one-time** | Whole Organization | Comprehensive copyleft AST fuzzy fingerprint audit, `snippet-license-sheriff` verification, formal contract verification, executive IP Cleanliness Certificate |
 | **Official Soroban Audit Certificate** | **$2,500 / audit** | Single Contract | 1,000-step WASM storage TTL boundary fuzzing, invariant check, cryptographic SHA-256 certificate |
 | **24/7 Soroban Telemetry Sentinel** | **$199 / mo** | 5 Contracts | Real-time live ledger event monitoring, Slack/Discord rich embed alerts before TTL eviction |
