@@ -66,11 +66,11 @@ def get_pricing():
             },
             {
                 "id": "enterprise_platform",
-                "name": "Enterprise Platform",
+                "name": "Enterprise Engineering Mesh",
                 "price_usd": 4999,
                 "type": "monthly",
                 "max_repos": -1,
-                "description": "Unlimited repositories, multi-repo speculative merge engine, zero-downtime migration orchestrator, WASM sandbox gate, dedicated 24/7 cloud keeper, custom SLA, and SOC2 compliance exports."
+                "description": "Unlimited repositories, full 24-solver suite across 6 Pillars (MVCC B-Tree virtual index, Roaring commit graphs, FastCDC Merkle streaming, SAT lockfile merge driver, CRIU runner preemption, SLSA L4 provenance, and CRDT distributed Git engine), dedicated 24/7 cloud keeper, custom SLA, and SOC2 compliance exports."
             },
             {
                 "id": "ma_ip_audit",
@@ -96,7 +96,15 @@ def get_pricing():
                 "max_repos": 5,
                 "description": "Continuous on-chain event stream monitoring with Discord/Slack webhook alarms before storage TTL eviction."
             }
-        ]
+        ],
+        "pillars": {
+            "pillar1_vcs_storage": "MVCC B-Tree Virtual Index, Bitmap-Sharded Commit Graphs, FastCDC Merkle Chunking, Unicode NFKC Gate",
+            "pillar2_repo_topology": "Multi-Repo Tx Protocol, SAT-Graph Merge Driver, Behavioral Contract Hypergraph, Cryptographic Merkle Redaction",
+            "pillar3_runner_isolation": "Action Context Taint Engine, Zero-Trust Cache Attestation, Single-Address Wasm Server, Preemptive CRIU Hypervisor",
+            "pillar4_supply_chain": "SLSA Level 4 Attestation, RFC 3161 Merkle Timestamp, In-Tree AST Micro-Patcher, SMT Reachability Solver",
+            "pillar5_gitops_scale": "Cloud Event Bus Reverse-Compiler, API Multiplexer & Traffic Shaper, CRDT Distributed Git Engine, Semantic AST Blame",
+            "pillar6_socio_technical": "Dynamic Context Policy Engine, Differential Fuzzing Auto-Merge, Dynamic State Diff Projection, Tree-Sitter SCIP Indexer"
+        }
     }
 
 @app.post("/api/audit/certify")
